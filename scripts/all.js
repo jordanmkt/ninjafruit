@@ -242,12 +242,6 @@ define("scripts/game.js", function (exports) {
 
     gameOver.show();
 
-    // timeline.setTimeout(function(){
-    //     // sence.switchSence( "home-menu" );
-    //     // TODO: require 出现互相引用时，造成死循环，这个问题需要跟进，这里暂时用 postMessage 代替
-    //     message.postMessage( "home-menu", "sence.switchSence" );
-    // }, 2000);
-
     scoreNumber = 0;
     volleyNum = 2;
     fruits.length = 0;
@@ -436,10 +430,10 @@ define("scripts/main.js", function (exports) {
   exports.start = function () {
     [timeline, sence, control].invoke("init");
 
-    log("Fruit Ninja");
-    log("Share by");
-    log("ZPS.VN");
-    log("Đang tải...");
+    //log("Fruit Ninja");
+    //log("Share by");
+    //log("ZPS.VN");
+    //log("Đang tải...");
     log.clear();
 
     setTimeout(sence.switchSence.saturate(sence, "home-menu"), 3000);
@@ -8173,12 +8167,10 @@ define("scripts/object/flame.js", function (exports) {
       angle: angle,
       length: length,
       life: life,
-      path: layer
-        .path()
-        .attr({
-          stroke: "none",
-          fill: trunc((angle * 180) / PI) + "-#fafad9-#f0ef9c",
-        }),
+      path: layer.path().attr({
+        stroke: "none",
+        fill: trunc((angle * 180) / PI) + "-#fafad9-#f0ef9c",
+      }),
     });
   }
 
@@ -8875,8 +8867,6 @@ define("scripts/object/lose.js", function (exports) {
     });
   };
 
-  // 显示/隐藏 相关
-
   exports.onTimeUpdate = function (time, mode, x1s, x1e, x2s, x2e, x3s, x3e) {
     o1.attr("x", anim(time, x1s, x1e - x1s, animLength));
     o2.attr("x", anim(time, x2s, x2e - x2s, animLength));
@@ -9031,8 +9021,6 @@ define("scripts/object/new.js", function (exports) {
     });
   };
 
-  // 显示相关
-
   exports.onShowStart = function () {};
 
   exports.onShowing = function (time, sx, ex, sy, ey, sw, ew, sh, eh) {
@@ -9047,8 +9035,6 @@ define("scripts/object/new.js", function (exports) {
   exports.onShowEnd = function () {
     this.jump();
   };
-
-  // 跳跃相关
 
   exports.onJumping = function (time) {
     var t = parseInt(time / cycleTime);
